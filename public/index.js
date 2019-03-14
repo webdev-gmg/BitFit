@@ -2,7 +2,7 @@ var statsDate="2019-03-14"
 var caloriesLeft = ""
 var goalsCaloriesOut=""
 var activityCalorie = ""
-var token = "Bearer Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJwcm8gcm51dCByc2xlIiwiZXhwIjoxNTUyMDMxNTQ3LCJpYXQiOjE1NTIwMDI3NDd9.hDfPuFkh7rR-XZntujlA5V4QpNzqedBCJksGqhnTxcc"
+var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJwcm8gcm51dCByc2xlIiwiZXhwIjoxNTUyMDMxNTQ3LCJpYXQiOjE1NTIwMDI3NDd9.hDfPuFkh7rR-XZntujlA5V4QpNzqedBCJksGqhnTxcc"
 setInterval(activityStepsWeek(), 3000);
 setTimeout(runStats(statsDate),3000)
 
