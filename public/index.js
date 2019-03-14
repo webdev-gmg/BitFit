@@ -6,6 +6,7 @@ var activityCalorie = ""
 var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNTY3NTM5LCJpYXQiOjE1NTI1Mzg3Mzl9.6bhupbSTYox6WUrXIuZdJsaS984RjkMMSZekeIBMNZU"
 setInterval(activityStepsWeek(), 3000);
 setTimeout(runStats(statsDate),3000)
+
 //$('#runStats').on('click',runStats)
 $('#searchdate').on('change',function(){
     statsDate = $('#searchdate').val();
@@ -324,7 +325,7 @@ function best(){
              `
          for(j=0;j<response.hits[i].recipe.ingredients.length;j++){
               modalpopup += ` <div class="modal-body">
-              ${response.hits[i].recipe.ingredients[j].text}
+             <li class = "text-secondary"> ${response.hits[i].recipe.ingredients[j].text}</li>
             </div>`
          }
          modalpopup+= `
@@ -355,7 +356,7 @@ function best(){
 
 
    
-
+    getPosts();
 
     function insertExpense(event) {
         
@@ -366,6 +367,27 @@ function best(){
             datedisp:$('#dispDate').text()
         };
         $.post("/api/saveds", saved, function (dbsaved) {
-            alert('Expense has been added')
+            alert('Saved the log')
             });
       }
+
+      function getPosts() {
+      
+        $.get("/api/saved", function(data) {
+          console.log("Posts", data);
+          
+          for(i=0;i<data.length;i++)
+          {
+            $("#renderTable").append(`<tr>
+            <td>${data[i].caloriesout}</td>
+            <td>${data[i].remainingCalories}</td>
+            <td>${data[i].datedisp}</td>
+            </tr>
+            `
+            )
+          }
+        
+        });
+      }
+
+    
