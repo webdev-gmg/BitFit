@@ -3,7 +3,7 @@ var statsDate="2019-03-12"
 var caloriesLeft = ""
 var goalsCaloriesOut=""
 var activityCalorie = ""
-var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNDY4MzU3LCJpYXQiOjE1NTI0Mzk1NTd9.osvcxSTHYDEa-tFUCktxtIKrKgZiS2UKk7MRdOilF0k"
+var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNTY3NTM5LCJpYXQiOjE1NTI1Mzg3Mzl9.6bhupbSTYox6WUrXIuZdJsaS984RjkMMSZekeIBMNZU"
 setInterval(activityStepsWeek(), 3000);
 setTimeout(runStats(statsDate),3000)
 //$('#runStats').on('click',runStats)
@@ -41,7 +41,9 @@ var settings = {
    activityCalorie = response.summary.caloriesOut
    goalsCaloriesOut = response.goals.caloriesOut
     $('#caloriesOut').text(activityCalorie)
-    $('#goalsCaloriesOut').text("/" + goalsCaloriesOut)
+    $('#goalsCaloriesOut').text("/" + goalsCaloriesOut)//sedentaryMinutes
+    $('#restingHR').text(response.summary.restingHeartRate)
+    $('#sedentaryMinutes').text(response.summary.sedentaryMinutes)
     foodLogs(response.summary.caloriesOut);
     goalsCaloriesOut = response.goals.caloriesOut
     if(goalsCaloriesOut > activityCalorie)
@@ -279,6 +281,7 @@ function best(){
     var recipecount = $('#to').val()
     var diet = $('#diet').val()
 
+
     function edamam(){
       var recipecount = $('#to').val()
       var diet = $('#diet').val()
@@ -287,25 +290,64 @@ function best(){
         "method": "GET"
       }
       
+    
+      var ingredients
+      var modalpopup
       $.ajax(settings).done(function (response) {
-
+     
         
       //  console.log(response.hits);
         for(i=0;i<response.hits.length;i++)
         {
-          console.log(response.hits[i].recipe.label)
-          $('#foods').append(`
+          var modal = `<button type="button" class="btn btn-primary" data-toggle="modal" 
+         data-target="#exampleModalScrollable${(response.hits[i].recipe.label).replace(/ +/g, "")}">
+        Ingredients
+      </button>`
+          modalpopup =""
+          var ingredient=`
           <div class ="col-4 mb-4 mt-4"> 
           <div class="card h-70" style="width: 18rem;">
           <img src=${response.hits[i].recipe.image} class="card-img-top" alt="...">
           <div class="card-body">
-          <h6 class="card-title text-truncate">${response.hits[i].recipe.label}</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h6 class="card-title text-truncate">${response.hits[i].recipe.label}</h6>`
+          modalpopup = `<div class="modal fade" id="exampleModalScrollable${(response.hits[i].recipe.label).replace(/ +/g, "")}" 
+          tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">${response.hits[i].recipe.label}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+             
+             `
+         for(j=0;j<response.hits[i].recipe.ingredients.length;j++){
+              modalpopup += ` <div class="modal-body">
+              ${response.hits[i].recipe.ingredients[j].text}
+            </div>`
+         }
+         modalpopup+= `
+<hr/>
+         <a href="${response.hits[i].recipe.url}" target="_blank" style="margin-left:10px">Check out the recipe</a>
+         <div style="height:20px"></div>
+         <div class="modal-footer">
+         </div>
+     </div>
+   </div>
+ </div>`
+
+          $('#foods').append(`
+          ${ingredient}
+          ${modal}
+          ${modalpopup}
           </div>
         </div>
-        </div>
-        `)
+        </div>`
+        )
         }
+
+       
       });
     }
 
