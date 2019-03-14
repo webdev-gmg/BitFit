@@ -38,73 +38,71 @@
 <!-- Load Babel Compiler -->
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
     <title>Bit</title>
   </head>
 
   <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">What Can I Eat</a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#"
+                        >Home <span class="sr-only">(current)</span></a
+                      ></li> <li class="nav-item active"></li>
+                      <a class="nav-link" href="#justlogs"
+                      >Stats <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active"></li>
+                      <a class="nav-link" href="#myChart"
+                      >Weekly Status <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active"></li>
+                    <a class="nav-link" href="#mybestdiv"
+                    >Achievments <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active"></li>
+                  <a class="nav-link" href="#to"
+                  >Time to Eat <span class="sr-only">(current)</span></a>
+                </li>
+        
+                  
+                  </ul>
+                  
+                  <form class="form-inline my-2 my-lg-0">
+                    <input
+                      class="form-control mr-sm-2"
+                      type="date"
+                      id="searchdate"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button> -->
+                  </form>
+                </div>
+              </nav>
     <div class="container">
-      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">My Fitness App</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Home <span class="sr-only">(current)</span></a
-              >
-            </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Stats
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#searchdate">Search by Date</a>
-                <a class="dropdown-item" href="#mybest">My Best</a>
-
-                <a class="dropdown-item" href="#mylifetime">LifeTime Stats</a>
-                <div class="dropdown-divider"></div>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="date"
-              id="searchdate"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button> -->
-          </form>
-        </div>
-      </nav>
-
+    
       <div style="height:60px"></div>
-      <div class="card" style="width: 60rem;">
+      
+      <div class="card" style="width: 60rem;background-color:#778899">
         <div class="card-body">
-          <h1 class="card-title text-center text-muted">My Stats</h1>
-          <h4 id="dispDate" class="text-center text-secondary"></h4>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <h1 class="card-title text-center text-white">My Stats</h1><hr/>
+          <h4 id="dispDate" class="text-center text-white"></h4>
+          <h6 class="card-subtitle mb-2 text-white"></h6>
           <hr />
           <div class="jumbotron">
             <!-- <label>Calories Out: </label
@@ -211,6 +209,7 @@
         </div>
         <!-- <button class="btn btn-primary" id="runStats" type="submit">My Activity</button> -->
       </form>
+      
       <div style="height:60px"></div>
       <div style = "margin-left:300px" >
         <h2 class ="text-info"> My Weekly Status (Steps) </h2>
@@ -223,7 +222,7 @@
       </div>
 
       <div style="height:60px"></div>
-      <table class="table table-striped table-dark" style="width:60rem">
+      <table class="table table-striped table-dark" style="width:60rem" id="justlogs">
         <thead>
           <tr>
             <th scope="col">Calories Out</th>
@@ -236,26 +235,20 @@
         </table>
         <div style="height:60px"></div>
       <!-- My Best -->
-      <div class="card" style="width: 58rem;" id="mybest">
-        <div class="card-body">
-          <h4 class="card-title text-center">My Best Stats</h4>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <label> Distance: </label
-          ><span class="card-text" id="totalDistanceDate"></span> :
-          <span class="card-text" id="totalDistanceValue"></span>
-          <br />
-          <label> Steps: </label
-          ><span class="card-text" id="totalStepsDate"></span> :
-          <span class="card-text" id="totalStepsValue"></span>
-          <br />
-          <!-- <a href="#" class="card-link">Card link</a>
-                          <a href="#" class="card-link">Another link</a> -->
-        </div>
-        <p id="code"></p>
-      </div>
+      <div class ="row" style="margin-left:200px">
+   <div id="mybestdiv"></div>
+   <div id="mystepdiv"></div>
+</div>    
+
+<div class ="row" style="margin-left:200px">
+        <div id="lifetimesteps"></div>
+        <div id="lifetimedistance"></div>
+     </div>    
+
+
       <div style="height:60px"></div>
       <!-- LifeTime -->
-      <div class="card" style="width: 58rem;">
+      <!-- <div class="card" style="width: 58rem;">
         <div class="card-body">
           <h4 class="card-title text-center" id="mylifetime">
             My Lifetime Stats
@@ -269,13 +262,18 @@
           <br />
           <!-- <a href="#" class="card-link">Card link</a>
                               <a href="#" class="card-link">Another link</a> -->
-        </div>
+        <!-- </div>
         <p id="code"></p>
-      </div>
+      </div>  -->
+      
       <div style="height:50px"></div>
-      <input type="text" id="to" className="form-control col-4" />
+      <div style="width:60rem" class= "jumbotron">
+          <h3>What Can I Eat</h3>
+          <hr/>
+          <br/>
+      <input type="number" id="to" class="form-control col-6" placeholder="How many recipes would you like to see?"/>
       <select
-        className="custom-select my-1 mr-sm-2 col-4"
+        class="custom-select my-1 mr-sm-2 col-6"
         id="diet"
         name="diet"
       >
@@ -288,12 +286,15 @@
         <option value="	low-fat">Low Fat</option>
         <option value="	low-sodium">Low Sodium</option>
       </select>
-      <button class="btn btn-primary" id="lookup">Look Up</button>
-      <div class="row" id="foods"></div>
+      <button class="btn btn-primary" id="lookup">I'm Hungry</button>
+    </div>
+      <div class="row jumbotron" id="foods" ></div>
       <div style="height:100px"></div>
     </div>
 
     <!-- Modal -->
+    <div id="best_stats"></div>
+    <div id="like_button_container"></div> 
   </body>
 
   <script>
@@ -324,7 +325,6 @@
     })();
   </script>
   <script src="index.js"></script>
-  <script src="code.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -338,7 +338,88 @@
   ></script>
   <script type="text/babel">
     ReactDOM.render(
-        <h1>Stats!</h1>,
+        <a className="weatherwidget-io" href="https://forecast7.com/en/39d95n75d17/philadelphia/?unit=us" data-label_1="PHILADELPHIA" data-label_2="WEATHER" data-font="Roboto" data-icons="Climacons" data-mode="Forecast" data-days="3" data-theme="original" >PHILADELPHIA WEATHER</a>,
         document.getElementById('id01'));
     </script>
+   
+   <script>
+   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+   </script>
+
+
+<script type="text/babel">
+    ReactDOM.render(
+        
+        <div className="card"  style= {{"width": "18rem"}}>
+        <div class="card-body">
+                
+          <h4 class="card-title text-center">Best Distance</h4>
+          <hr/>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <h6 class="card-text ml-2 text-center text-info" id="totalDistanceDate"></h6>
+          <h3 class="card-text text-center text-success" id="totalDistanceValue"></h3>
+          <br />
+        </div>
+        </div>
+        ,
+      
+        document.getElementById('mybestdiv'));
+    </script>
+
+<script type="text/babel">
+    ReactDOM.render(
+        
+        <div className="card"  style= {{"width": "18rem"}}>
+        <div class="card-body">
+                
+          <h4 class="card-title text-center">Best Steps</h4>
+          <hr/>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <h6 class="card-text  ml-2 text-center text-info" id="totalStepsDate"></h6> 
+          <h3 class="card-text  ml-2 text-center text-success" id="totalStepsValue"></h3>
+          <br />
+        </div>
+        </div>
+        ,
+      
+        document.getElementById('mystepdiv'));
+    </script>
+
+<script type="text/babel">
+    ReactDOM.render(
+        
+        <div className="card"  style= {{"width": "18rem"}}>
+        <div class="card-body">
+                
+          <h4 class="card-title text-center">Lifetime Distance</h4>
+          <hr/>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <h3 class="card-text ml-2 text-center text-success" id="lifetimeDistanceValue"></h3>
+          <br />
+        </div>
+        </div>
+        ,
+      
+        document.getElementById('lifetimedistance'));
+    </script>
+
+<script type="text/babel">
+    ReactDOM.render(
+        
+        <div className="card"  style= {{"width": "18rem"}}>
+        <div class="card-body">
+                
+          <h4 class="card-title text-center">Lifetime Steps</h4>
+          <hr/>
+          <h3 class="card-subtitle mb-2 text-muted"></h3>
+          <h3 class="card-text ml-2 text-center text-success" id="lifetimeStepsValue"></h3>
+          
+          <br />
+        </div>
+        </div>
+        ,
+      
+        document.getElementById('lifetimesteps'));
+    </script>
+
 </html>

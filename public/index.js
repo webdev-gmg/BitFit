@@ -1,9 +1,8 @@
-
 var statsDate="2019-03-14"
 var caloriesLeft = ""
 var goalsCaloriesOut=""
 var activityCalorie = ""
-var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNTY3NTM5LCJpYXQiOjE1NTI1Mzg3Mzl9.6bhupbSTYox6WUrXIuZdJsaS984RjkMMSZekeIBMNZU"
+var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJzZXQgcmFjdCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNjExNTM3LCJpYXQiOjE1NTI1ODI3Mzd9.48qPI49S-vQ6NlVt6329arzYwcN26mxS4hIzfSL1xXc"
 setInterval(activityStepsWeek(), 3000);
 setTimeout(runStats(statsDate),3000)
 
@@ -17,7 +16,7 @@ console.log($('.progress-bar').attr('style'))
 $('.progress-bar').width(1000)
 function runStats(statsDate){
     $('#dispDate').text(statsDate)
-    if(statsDate != "2019-03-12")
+    if(statsDate != "2019-03-14")
     {
     statsDate = $('#searchdate').val();
     }
@@ -286,6 +285,7 @@ function best(){
     function edamam(){
       var recipecount = $('#to').val()
       var diet = $('#diet').val()
+      $("#foods").empty();
       var settings = {
         "url": "https://api.edamam.com/search?q=&app_id=d92a48f4&app_key=58924f64c0c56540119df47989fe9528&to="+recipecount+"&calories=0-400&health=alcohol-free&diet="+diet,
         "method": "GET"
@@ -294,13 +294,15 @@ function best(){
     
       var ingredients
       var modalpopup
+      var modal
       $.ajax(settings).done(function (response) {
      
         
       //  console.log(response.hits);
         for(i=0;i<response.hits.length;i++)
         {
-          var modal = `<button type="button" class="btn btn-primary" data-toggle="modal" 
+            
+           modal = `<button type="button" class="btn btn-primary" data-toggle="modal" 
          data-target="#exampleModalScrollable${(response.hits[i].recipe.label).replace(/ +/g, "")}">
         Ingredients
       </button>`
@@ -389,5 +391,3 @@ function best(){
         
         });
       }
-
-    
