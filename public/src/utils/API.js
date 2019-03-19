@@ -17,4 +17,13 @@ export default {
    // return axios.get(BASEURL);
     return axios.get(BASEURL + `&to=${to}` + calories + health + `&diet=${diet}`);
   },
+
+  fitnessdata: function(query){
+    return  axios.get("https://api.fitbit.com/1/user/-/activities/date/"+query+".json", config)
+
+  },
+
+  monthlystatus: function(){
+    return  axios.get("https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json", config)   
+  }
 };

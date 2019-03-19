@@ -1,4 +1,19 @@
-var statsDate="2019-03-14"
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+  dd = "0" + dd;
+}
+
+if (mm < 10) {
+  mm = "0" + mm;
+}
+
+var statsDate = yyyy + "-" + mm + "-" + dd;
+
+
 var caloriesLeft = ""
 var goalsCaloriesOut=""
 var activityCalorie = ""
@@ -16,10 +31,7 @@ console.log($('.progress-bar').attr('style'))
 $('.progress-bar').width(1000)
 function runStats(statsDate){
     $('#dispDate').text(statsDate)
-    if(statsDate != "2019-03-14")
-    {
-    statsDate = $('#searchdate').val();
-    }
+ 
     //event.preventDefault()
 var settings = {
     "url": `https://api.fitbit.com/1/user/-/activities/date/${statsDate}.json`,
@@ -32,14 +44,11 @@ var settings = {
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response);
-    console.log(response.goals.steps)
-    console.log(response.summary.steps)
 
     $("#steps").text(response.summary.steps)
     $("#goalsteps").text(response.goals.steps)
    activityCalorie = response.summary.caloriesOut
-   goalsCaloriesOut = response.goals.caloriesOut
+   goalsCaloriesOut = response.goals.caloriesOut 
     $('#caloriesOut').text(activityCalorie)
     $('#goalsCaloriesOut').text("/" + goalsCaloriesOut)//sedentaryMinutes
     $('#restingHR').text(65)
@@ -59,10 +68,6 @@ var settings = {
  
 
 }
-
-$( document ).ready(function() {
-    $("#progress").width(100)
-  });
 
 
 
